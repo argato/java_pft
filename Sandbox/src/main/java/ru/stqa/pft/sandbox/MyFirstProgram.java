@@ -6,9 +6,9 @@ public class MyFirstProgram {
    Point p1 = new Point(0.0, 3.5);
    Point p2 = new Point(0.0, 0.0);
 
-   System.out.println("Р Р°СЃСЃС‚РѕСЏРЅРёРµ = " + distance(p1, p2));
-   System.out.println("Р Р°СЃСЃС‚РѕСЏРЅРёРµ = " + p1.distance(p2));
-   System.out.println("Р Р°СЃСЃС‚РѕСЏРЅРёРµ = " + p2.distance(p1));
+   System.out.println("Расстояние = " + distance(p1, p2));
+   System.out.println("Расстояние = " + p1.distance(p2));
+   System.out.println("Расстояние = " + p2.distance(p1));
  }
 
    public static double distance(Point p1, Point p2){
