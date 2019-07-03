@@ -27,7 +27,7 @@ public class ContactCreationTests {
   }
 
   @Test
-  public void testUntitledTestCase() throws Exception {
+  public void testContactCreation() throws Exception {
     initContactCreation();
     fillContactForm(new ContactData("Mname", "Lname", "nickname", "title", "line1\nline2", "999999", "1414141414", "Fname", "qwerty@mmmmail.ru", "10", "February", "2000"));
     submitContactCreation();
