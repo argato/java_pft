@@ -72,12 +72,12 @@ public class ContactCreationTests {
     new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.getBirthdayDay());
     wd.findElement(By.xpath("//form[@name='theform']//select[@name='bday']")).click();
     wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBirthdayMonth());//"February");
+    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBirthdayMonth());
     wd.findElement(By.xpath("//form[@name='theform']//select[@name='bmonth']")).click();
     wd.findElement(By.name("byear")).click();
     wd.findElement(By.name("byear")).click();
     wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys(contactData.getBirthdayYear()); // "2000");
+    wd.findElement(By.name("byear")).sendKeys(contactData.getBirthdayYear());
 
   }
 
