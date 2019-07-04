@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package model;
 
 import javax.smartcardio.ATR;
 import java.time.LocalDate;
