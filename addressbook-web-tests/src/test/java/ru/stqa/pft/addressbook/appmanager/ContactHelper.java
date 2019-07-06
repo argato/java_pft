@@ -28,7 +28,17 @@ public class ContactHelper extends HelperBase {
     type(By.name("byear"), contactData.getBirthdayYear());
   }
 
-  public void initContactCreation() {
-    click(By.linkText("add new"));
+  public void initContactCreation() { click(By.linkText("add new"));  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
   }
+
+  public void initContactModification() {  click(By.cssSelector("img[alt=\"Edit\"]")); }
+
+  public void submitContactModification() {  click(By.xpath("(//input[@name='update'])[2]")); }
+
+  public void deleteSelectedContacts() { click(By.xpath("//input[@value='Delete']"));}
+
+  public void acceptDeletingContacts(){ wd.switchTo().alert().accept(); }
 }
