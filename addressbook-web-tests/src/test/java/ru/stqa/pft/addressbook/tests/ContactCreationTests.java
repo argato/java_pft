@@ -1,7 +1,7 @@
-package tests;
+package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.*;
-import model.ContactData;
+import ru.stqa.pft.appmanager.model.ContactData;
 
 public class ContactCreationTests extends TestBase{
 

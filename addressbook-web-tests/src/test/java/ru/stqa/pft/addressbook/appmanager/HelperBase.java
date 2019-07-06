@@ -1,4 +1,4 @@
-package appmanager;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
@@ -13,8 +13,8 @@ public class HelperBase {
     this.wd = wd;
   }
 
-  protected void click(By group_page) {
-    click(group_page);
+  protected void click(By locator) {
+    wd.findElement(locator).click();
   }
 
   protected void type(By locator, String text) {

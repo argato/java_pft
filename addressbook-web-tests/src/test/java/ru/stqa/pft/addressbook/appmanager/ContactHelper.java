@@ -1,6 +1,6 @@
-package appmanager;
+package ru.stqa.pft.addressbook.appmanager;
 
-import model.ContactData;
+import ru.stqa.pft.appmanager.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 

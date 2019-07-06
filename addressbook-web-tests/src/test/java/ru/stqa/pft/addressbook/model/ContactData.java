@@ -1,4 +1,4 @@
-package model;
+package ru.stqa.pft.appmanager.model;
 
 public class ContactData {
   private final String mname;
