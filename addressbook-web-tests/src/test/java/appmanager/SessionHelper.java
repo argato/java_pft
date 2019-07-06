@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class SessionHelper extends HelperBase {
-  private FirefoxDriver wd;
 
   public SessionHelper(FirefoxDriver wd) {
     super(wd);
@@ -19,6 +18,6 @@ public class SessionHelper extends HelperBase {
   }
 
   public void logout() {
-    wd.findElement(By.linkText("Logout")).click();
+    click(By.linkText("Logout"));
   }
 }

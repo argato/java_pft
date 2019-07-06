@@ -1,6 +1,5 @@
 package appmanager;
 
-import com.sun.javafx.binding.ExpressionHelperBase;
 import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
