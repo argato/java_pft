@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.appmanager.model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class GroupHelper extends HelperBase {
 
@@ -40,4 +39,16 @@ public class GroupHelper extends HelperBase {
   public void initGroupModification() {  click(By.name("edit")); }
 
   public void submitGroupModification() { click(By.name("update")); }
+
+  public void createGroup(GroupData groupData) {
+    initGroupCreation();
+    fillGroupForm(groupData);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
 }

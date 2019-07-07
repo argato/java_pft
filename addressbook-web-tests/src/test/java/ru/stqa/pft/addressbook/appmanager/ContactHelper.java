@@ -24,11 +24,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobileNumber());
     type(By.name("email"), contactData.getEmail());
     type(By.name("home"), contactData.getHomeNumber());
-    SetComboBox(By.name("bday"), contactData.getBirthdayDay());
-    SetComboBox(By.name("bmonth"), contactData.getBirthdayMonth());
+    setComboBox(By.name("bday"), contactData.getBirthdayDay());
+    setComboBox(By.name("bmonth"), contactData.getBirthdayMonth());
     type(By.name("byear"), contactData.getBirthdayYear());
     if(creation){
-      SetComboBox(By.name("new_group"), contactData.getGroup());
+      setComboBox(By.name("new_group"), contactData.getGroup());
     } else  {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

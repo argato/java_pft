@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
@@ -29,7 +28,7 @@ public class HelperBase {
     }
   }
 
-  protected void SetComboBox(By locator, String text){
+  protected void setComboBox(By locator, String text){
     click(locator);
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
@@ -51,5 +50,4 @@ public class HelperBase {
       return false;
     }
   }
-
 }
