@@ -28,7 +28,9 @@ public class ContactHelper extends HelperBase {
     setComboBox(By.name("bmonth"), contactData.getBirthdayMonth());
     type(By.name("byear"), contactData.getBirthdayYear());
     if(creation){
-      setComboBox(By.name("new_group"), contactData.getGroup());
+      if(contactData.getGroup() != null){
+        setComboBox(By.name("new_group"), contactData.getGroup());
+      }
     } else  {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -47,4 +49,14 @@ public class ContactHelper extends HelperBase {
   public void deleteSelectedContacts() { click(By.xpath("//input[@value='Delete']"));}
 
   public void acceptDeletingContacts(){ wd.switchTo().alert().accept(); }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contactData) {
+    initContactCreation();
+    fillContactForm(contactData, true);
+    submitContactCreation();
+  }
 }
