@@ -1,9 +1,9 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.appmanager.model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
 
@@ -13,7 +13,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//form[@name='theform']//input[@name='submit']"));
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFname());
     type(By.name("middlename"), contactData.getMname());
     type(By.name("lastname"), contactData.getLastname());
@@ -24,9 +24,14 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobileNumber());
     type(By.name("email"), contactData.getEmail());
     type(By.name("home"), contactData.getHomeNumber());
-    setCheckBox(By.name("bday"), contactData.getBirthdayDay());
-    setCheckBox(By.name("bmonth"), contactData.getBirthdayMonth());
+    SetComboBox(By.name("bday"), contactData.getBirthdayDay());
+    SetComboBox(By.name("bmonth"), contactData.getBirthdayMonth());
     type(By.name("byear"), contactData.getBirthdayYear());
+    if(creation){
+      SetComboBox(By.name("new_group"), contactData.getGroup());
+    } else  {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void initContactCreation() { click(By.linkText("add new"));  }

@@ -29,7 +29,7 @@ public class HelperBase {
     }
   }
 
-  protected void setCheckBox(By locator, String text){
+  protected void SetComboBox(By locator, String text){
     click(locator);
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
