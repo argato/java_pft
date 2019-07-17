@@ -10,14 +10,18 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   WebDriver wd;
+  String browser;
 
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private ContactHelper contactHelper;
 
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
+
   public void init() {
-    String browser = BrowserType.FIREFOX;
 
     if(browser.equals(BrowserType.FIREFOX)){
       wd = new FirefoxDriver();
