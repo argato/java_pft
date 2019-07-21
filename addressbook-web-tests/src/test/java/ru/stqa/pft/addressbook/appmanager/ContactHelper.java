@@ -42,8 +42,8 @@ public class ContactHelper extends HelperBase {
 
   public void initContactCreation() { click(By.linkText("add new"));  }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initContactModification() {  click(By.cssSelector("img[alt=\"Edit\"]")); }
@@ -78,7 +78,6 @@ public class ContactHelper extends HelperBase {
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       String email = element.findElement(By.xpath(".//td[5]")).getText();
       ContactData group = new ContactData(firstname, lastname, email);
-      System.out.println(group);
       groups.add(group);
     }
     return groups;
