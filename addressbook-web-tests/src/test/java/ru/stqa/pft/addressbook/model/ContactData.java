@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
+  private final String id;
   private final String mname;
   private final String lastname;
   private final String nickname;
@@ -18,6 +19,7 @@ public class ContactData {
   private final String group;
 
   public ContactData(String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
+    this.id = null;
     this.mname = middlename;
     this.lastname = lastname;
     this.nickname = nickname;
@@ -33,10 +35,11 @@ public class ContactData {
     this.group = group;
   }
 
-  public ContactData(String firstName, String lastName, String email) {
+  public ContactData(String id, String firstName, String lastName) {
+    this.id = id;
     this.fname = firstName;
     this.lastname = lastName;
-    this.email = email;
+    this.email = null;
     this.address = null;
     this.mname = null;
     this.nickname = null;
@@ -47,6 +50,23 @@ public class ContactData {
     this.bMonth = null;
     this.bYear = null;
     this.group = null;
+  }
+
+  public ContactData(String id, String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
+    this.id = id;
+    this.mname = middlename;
+    this.lastname = lastname;
+    this.nickname = nickname;
+    this.title = title;
+    this.address = address;
+    this.fname = fname;
+    this.homeNumber = home;
+    this.mobileNumber = mobile;
+    this.email = email;
+    this.bDay = bday;
+    this.bMonth = bmonth;
+    this.bYear = byear;
+    this.group = group;
   }
 
   public String getMname() {
@@ -91,12 +111,14 @@ public class ContactData {
 
   public String getGroup() { return group; }
 
+  public String getId() { return id; }
+
   @Override
   public String toString() {
     return "ContactData{" +
-            "lastname='" + lastname + '\'' +
+            "id='" + id + '\'' +
+            ", lastname='" + lastname + '\'' +
             ", fname='" + fname + '\'' +
-            ", email='" + email + '\'' +
             '}';
   }
 
@@ -105,13 +127,13 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(lastname, that.lastname) &&
-            Objects.equals(fname, that.fname) &&
-            Objects.equals(email, that.email);
+    return Objects.equals(id, that.id) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(fname, that.fname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastname, fname, email);
+    return Objects.hash(id, lastname, fname);
   }
 }

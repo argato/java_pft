@@ -46,7 +46,9 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initContactModification() {  click(By.cssSelector("img[alt=\"Edit\"]")); }
+  public void initContactModification(int index) {
+    wd.findElements(By.xpath("//*[@id='maintable']//tr[@name='entry']")).get(index).findElement(By.xpath(".//img[@title=\"Edit\"]")).click();
+  }
 
   public void submitContactModification() {  click(By.xpath("(//input[@name='update'])[2]")); }
 
@@ -74,10 +76,10 @@ public class ContactHelper extends HelperBase {
     List<ContactData> groups = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']//tr[@name='entry']"));
     for(WebElement element : elements){
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
-      String email = element.findElement(By.xpath(".//td[5]")).getText();
-      ContactData group = new ContactData(firstname, lastname, email);
+      ContactData group = new ContactData(id, firstname, lastname);
       groups.add(group);
     }
     return groups;

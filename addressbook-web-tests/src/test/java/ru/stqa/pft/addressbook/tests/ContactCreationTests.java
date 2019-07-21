@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ContactCreationTests extends TestBase {
     if (newContact.getGroup() != null) {
       app.getNavigationHelper().gotoGroupPage();
       if (!app.getGroupHelper().isGroupExist(newContact.getGroup())) {
-        app.getGroupHelper().createGroup(new ru.stqa.pft.appmanager.model.GroupData(newContact.getGroup(), null, null));
+        app.getGroupHelper().createGroup(new GroupData(newContact.getGroup(), null, null));
       }
     }
     app.getNavigationHelper().goToHomePage();
