@@ -2,8 +2,12 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -50,6 +54,8 @@ public class ContactHelper extends HelperBase {
 
   public void acceptDeletingContacts(){ wd.switchTo().alert().accept(); }
 
+  public void waitDeletingFinished(){ wd.findElement(By.cssSelector("div.msgbox"));}
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -62,5 +68,19 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> groups = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']//tr[@name='entry']"));
+    for(WebElement element : elements){
+      String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+      String firstname = element.findElement(By.xpath(".//td[3]")).getText();
+      String email = element.findElement(By.xpath(".//td[5]")).getText();
+      ContactData group = new ContactData(firstname, lastname, email);
+      System.out.println(group);
+      groups.add(group);
+    }
+    return groups;
   }
 }

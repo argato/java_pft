@@ -31,6 +31,22 @@ public class ContactData {
     this.group = group;
   }
 
+  public ContactData(String firstName, String lastName, String email) {
+    this.fname = firstName;
+    this.lastname = lastName;
+    this.email = email;
+    this.address = null;
+    this.mname = null;
+    this.nickname = null;
+    this.title = null;
+    this.homeNumber = null;
+    this.mobileNumber = null;
+    this.bDay = null;
+    this.bMonth = null;
+    this.bYear = null;
+    this.group = null;
+  }
+
   public String getMname() {
     return mname;
   }
@@ -72,4 +88,13 @@ public class ContactData {
   public String getBirthdayDay() { return bDay; }
 
   public String getGroup() { return group; }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "lastname='" + lastname + '\'' +
+            ", fname='" + fname + '\'' +
+            ", email='" + email + '\'' +
+            '}';
+  }
 }
