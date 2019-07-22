@@ -20,7 +20,7 @@ public class ContactData {
   private final String group;
 
   public ContactData(String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.mname = middlename;
     this.lastname = lastname;
     this.nickname = nickname;
@@ -130,13 +130,12 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(lastname, that.lastname) &&
+    return Objects.equals(lastname, that.lastname) &&
             Objects.equals(fname, that.fname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, lastname, fname);
+    return Objects.hash(lastname, fname);
   }
 }

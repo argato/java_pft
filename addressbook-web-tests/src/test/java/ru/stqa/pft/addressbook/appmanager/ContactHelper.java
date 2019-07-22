@@ -80,6 +80,7 @@ public class ContactHelper extends HelperBase {
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       ContactData group = new ContactData(id, firstname, lastname);
+      System.out.println(group);
       groups.add(group);
     }
     return groups;
