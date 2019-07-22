@@ -3,7 +3,8 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final String id;
+
+  private int id;
   private final String mname;
   private final String lastname;
   private final String nickname;
@@ -19,7 +20,7 @@ public class ContactData {
   private final String group;
 
   public ContactData(String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
-    this.id = null;
+    this.id = 0;
     this.mname = middlename;
     this.lastname = lastname;
     this.nickname = nickname;
@@ -35,7 +36,7 @@ public class ContactData {
     this.group = group;
   }
 
-  public ContactData(String id, String firstName, String lastName) {
+  public ContactData(int id, String firstName, String lastName) {
     this.id = id;
     this.fname = firstName;
     this.lastname = lastName;
@@ -52,7 +53,7 @@ public class ContactData {
     this.group = null;
   }
 
-  public ContactData(String id, String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
+  public ContactData(int id, String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
     this.id = id;
     this.mname = middlename;
     this.lastname = lastname;
@@ -111,7 +112,9 @@ public class ContactData {
 
   public String getGroup() { return group; }
 
-  public String getId() { return id; }
+  public int getId() { return id; }
+
+  public void setId(int id) { this.id = id; }
 
   @Override
   public String toString() {
@@ -127,7 +130,7 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(id, that.id) &&
+    return id == that.id &&
             Objects.equals(lastname, that.lastname) &&
             Objects.equals(fname, that.fname);
   }
