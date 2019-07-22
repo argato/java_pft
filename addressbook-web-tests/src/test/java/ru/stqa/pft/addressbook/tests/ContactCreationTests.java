@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     app.getNavigationHelper().goToHomePage();
-    ContactData newContact = new ContactData("Mname", "Lname", "nickname", "title", "line1\nline2", "999999",
+    ContactData newContact = new ContactData("Mname", "LnameNew", "nickname", "title", "line1\nline2", "999999",
             "1414141414", "Fname", "qwerty@mmmmail.ru", "10", "February", "2000", "test1");
     if (newContact.getGroup() != null) {
       app.getNavigationHelper().gotoGroupPage();
@@ -28,13 +28,7 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    int max = 0;
-    for(ContactData g: after){
-      if(g.getId() > max){
-        max = g.getId();
-      }
-    }
-    newContact.setId(max);
+    newContact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(newContact);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
