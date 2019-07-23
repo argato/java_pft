@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testContactCreation() throws Exception {
     app.getNavigationHelper().goToHomePage();
     ContactData newContact = new ContactData("Mname", "LnameNew", "nickname", "title", "line1\nline2", "999999",
