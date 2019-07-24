@@ -4,71 +4,20 @@ import java.util.Objects;
 
 public class ContactData {
 
-  private int id;
-  private final String mname;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String address;
-  private final String fname;
-  private final String homeNumber;
-  private final String mobileNumber;
-  private final String email;
-  private final String bDay;
-  private final String bMonth;
-  private final String bYear;
-  private final String group;
-
-  public ContactData(String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.mname = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.address = address;
-    this.fname = fname;
-    this.homeNumber = home;
-    this.mobileNumber = mobile;
-    this.email = email;
-    this.bDay = bday;
-    this.bMonth = bmonth;
-    this.bYear = byear;
-    this.group = group;
-  }
-
-  public ContactData(int id, String firstName, String lastName) {
-    this.id = id;
-    this.fname = firstName;
-    this.lastname = lastName;
-    this.email = null;
-    this.address = null;
-    this.mname = null;
-    this.nickname = null;
-    this.title = null;
-    this.homeNumber = null;
-    this.mobileNumber = null;
-    this.bDay = null;
-    this.bMonth = null;
-    this.bYear = null;
-    this.group = null;
-  }
-
-  public ContactData(int id, String middlename, String lastname, String nickname, String title, String address, String home, String mobile, String fname, String email, String bday, String bmonth, String byear, String group) {
-    this.id = id;
-    this.mname = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.address = address;
-    this.fname = fname;
-    this.homeNumber = home;
-    this.mobileNumber = mobile;
-    this.email = email;
-    this.bDay = bday;
-    this.bMonth = bmonth;
-    this.bYear = byear;
-    this.group = group;
-  }
+  private int id = Integer.MAX_VALUE;
+  private String mname;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String address;
+  private String fname;
+  private String homeNumber;
+  private String mobileNumber;
+  private String email;
+  private String bDay;
+  private String bMonth;
+  private String bYear;
+  private String group;
 
   public String getMname() {
     return mname;
@@ -114,7 +63,75 @@ public class ContactData {
 
   public int getId() { return id; }
 
-  public void setId(int id) { this.id = id; }
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withMname(String mname) {
+    this.mname = mname;
+    return this;
+  }
+
+  public ContactData withLastName(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withFname(String fname) {
+    this.fname = fname;
+    return this;
+  }
+
+  public ContactData withHomeNumber(String homeNumber) {
+    this.homeNumber = homeNumber;
+    return this;
+  }
+
+  public ContactData withMobileNumber(String mobileNumber) {
+    this.mobileNumber = mobileNumber;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withbDay(String bDay) {
+    this.bDay = bDay;
+    return this;
+  }
+
+  public ContactData withbMonth(String bMonth) {
+    this.bMonth = bMonth;
+    return this;
+  }
+
+  public ContactData withbYear(String bYear) {
+    this.bYear = bYear;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
 
   @Override
   public String toString() {

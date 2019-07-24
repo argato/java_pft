@@ -13,8 +13,9 @@ public class ContactModificationTests extends TestBase {
   @BeforeMethod
   public void ensurePredication() {
     if (!app.contact().isThereAContact()) {
-      app.contact().create(new ContactData("Mod", "Mod", "Mod", "title", "line1\nline2", "999999",
-              "1414141414", "Fname", "qwerty@mmmmail.ru", "10", "February", "2000", null));
+      app.contact().create(new ContactData().withLastName("Mod").withMname("Mod").withNickname("nickname")
+              .withTitle("title").withAddress("line1").withHomeNumber("999999").withFname("Mod")
+              .withEmail("Mod@mmmmail.ru").withbDay("11").withbMonth("February").withbYear("2000"));
     }
     app.goTo().homePage();
   }
@@ -23,8 +24,9 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() throws Exception {
     List<ContactData> before = app.contact().getContactList();
     int index = before.size() - 1;
-    ContactData contact = new ContactData(before.get(index).getId(), "Mname1", "Lname1", "nickname1", "title", "line1\nline2", "999999",
-            "1414141414", "Fname1", "qwerty@mmmmail.ru", "10", "February", "2000", null);
+    ContactData contact = new ContactData().withId(before.get(index).getId()).withLastName("Lname1").withMname("Mname1").withNickname("nickname1")
+            .withTitle("title1").withAddress("line1").withHomeNumber("999999").withFname("Fname1")
+            .withEmail("modify@mmmmail.ru").withbDay("12").withbMonth("February").withbYear("2000");
     app.contact().modify(index, contact);
     List<ContactData> after = app.contact().getContactList();
     Assert.assertEquals(after.size(), before.size());

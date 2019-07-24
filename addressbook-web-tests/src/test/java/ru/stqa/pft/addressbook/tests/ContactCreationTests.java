@@ -10,15 +10,16 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void testContactCreation() throws Exception {
     app.goTo().homePage();
-    ContactData newContact = new ContactData("Mname", "LnameNew", "nickname", "title", "line1\nline2", "999999",
-            "1414141414", "Fname", "qwerty@mmmmail.ru", "10", "February", "2000", "test1");
+    ContactData newContact = new ContactData().withLastName("LnameNew").withMname("Mname").withNickname("nickname")
+            .withTitle("title").withAddress("line1\nline2").withHomeNumber("999999").withFname("Fname")
+            .withEmail("qwerty@mmmmail.ru").withGroup("test1").withbDay("10").withbMonth("February").withbYear("2000");
     if (newContact.getGroup() != null) {
       app.goTo().groupPage();
       if (!app.group().isGroupExist(newContact.getGroup())) {
-        app.group().create(new GroupData(newContact.getGroup(), null, null));
+        app.group().create(new GroupData().withName(newContact.getGroup()));
       }
     }
     app.goTo().homePage();
@@ -28,7 +29,7 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> after = app.contact().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    newContact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    newContact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(newContact);
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(),c2.getId());
     before.sort(byId);

@@ -13,12 +13,13 @@ public class ContactDeletionTests extends TestBase {
   public void ensurePredication(){
     app.goTo().homePage();
     if (!app.contact().isThereAContact()) {
-      app.contact().create(new ContactData("Del", "Del", "Del", "title", "line1\nline2", "999999",
-              "1414141414", "Fname", "qwerty@mmmmail.ru", "10", "February", "2000", null));
+      app.contact().create(new ContactData().withLastName("Del").withMname("Del").withNickname("nickDel")
+              .withTitle("title").withAddress("line1").withHomeNumber("999999").withFname("Del")
+              .withEmail("del@mmmmail.ru").withbDay("11").withbMonth("February").withbYear("2000"));
     }
   }
 
-  @Test(enabled = false)
+  @Test
   public void testContactDeletion() throws Exception {
     app.goTo().homePage();
     List<ContactData> before = app.contact().getContactList();
