@@ -12,20 +12,20 @@ public class ContactCreationTests extends TestBase {
 
   @Test(enabled = false)
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().goToHomePage();
+    app.goTo().homePage();
     ContactData newContact = new ContactData("Mname", "LnameNew", "nickname", "title", "line1\nline2", "999999",
             "1414141414", "Fname", "qwerty@mmmmail.ru", "10", "February", "2000", "test1");
     if (newContact.getGroup() != null) {
-      app.getNavigationHelper().gotoGroupPage();
-      if (!app.getGroupHelper().isGroupExist(newContact.getGroup())) {
-        app.getGroupHelper().createGroup(new GroupData(newContact.getGroup(), null, null));
+      app.goTo().groupPage();
+      if (!app.group().isGroupExist(newContact.getGroup())) {
+        app.group().create(new GroupData(newContact.getGroup(), null, null));
       }
     }
-    app.getNavigationHelper().goToHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().createContact(newContact);
-    app.getNavigationHelper().goToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.goTo().homePage();
+    List<ContactData> before = app.contact().getContactList();
+    app.contact().create(newContact);
+    app.goTo().homePage();
+    List<ContactData> after = app.contact().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     newContact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());

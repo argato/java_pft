@@ -62,17 +62,24 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContact(ContactData contactData) {
+  public void create(ContactData contactData) {
     initContactCreation();
     fillContactForm(contactData, true);
     submitContactCreation();
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
       initContactModification(index);
       fillContactForm(contact, false);
       submitContactModification();
       returnToHomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContacts();
+    acceptDeletingContacts();
+    waitDeletingFinished();
   }
 
   public void returnToHomePage() {
