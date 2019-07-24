@@ -6,12 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
-  public ContactHelper(WebDriver wd){ super(wd);}
+  public ContactHelper(WebDriver wd) {
+    super(wd);
+  }
 
   public void submitContactCreation() {
     click(By.xpath("//form[@name='theform']//input[@name='submit']"));
@@ -31,32 +34,46 @@ public class ContactHelper extends HelperBase {
     setComboBox(By.name("bday"), contactData.getBirthdayDay());
     setComboBox(By.name("bmonth"), contactData.getBirthdayMonth());
     type(By.name("byear"), contactData.getBirthdayYear());
-    if(creation){
-      if(contactData.getGroup() != null){
+    if (creation) {
+      if (contactData.getGroup() != null) {
         setComboBox(By.name("new_group"), contactData.getGroup());
       }
-    } else  {
+    } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
 
-  public void initContactCreation() { click(By.linkText("add new"));  }
+  public void initContactCreation() {
+    click(By.linkText("add new"));
+  }
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initContactModification(int index) {
-    wd.findElements(By.xpath("//*[@id='maintable']//tr[@name='entry']")).get(index).findElement(By.xpath(".//img[@title=\"Edit\"]")).click();
+  public void selectContactbyId(int id) {
+    wd.findElement(By.id(Integer.toString(id))).click();
   }
 
-  public void submitContactModification() {  click(By.xpath("(//input[@name='update'])[2]")); }
+  public void initContactModificationById(int id) {
+    wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+  }
 
-  public void deleteSelectedContacts() { click(By.xpath("//input[@value='Delete']"));}
+  public void submitContactModification() {
+    click(By.xpath("(//input[@name='update'])[2]"));
+  }
 
-  public void acceptDeletingContacts(){ wd.switchTo().alert().accept(); }
+  public void deleteSelectedContacts() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
 
-  public void waitDeletingFinished(){ wd.findElement(By.cssSelector("div.msgbox"));}
+  public void acceptDeletingContacts() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void waitDeletingFinished() {
+    wd.findElement(By.cssSelector("div.msgbox"));
+  }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
@@ -68,15 +85,15 @@ public class ContactHelper extends HelperBase {
     submitContactCreation();
   }
 
-  public void modify(int index, ContactData contact) {
-      initContactModification(index);
-      fillContactForm(contact, false);
-      submitContactModification();
-      returnToHomePage();
+  public void modify(ContactData contact) {
+    initContactModificationById(contact.getId());
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactbyId(contact.getId());
     deleteSelectedContacts();
     acceptDeletingContacts();
     waitDeletingFinished();
@@ -90,10 +107,10 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
-    List<ContactData> groups = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> groups = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']//tr[@name='entry']"));
-    for(WebElement element : elements){
+    for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
@@ -102,4 +119,5 @@ public class ContactHelper extends HelperBase {
     }
     return groups;
   }
+
 }

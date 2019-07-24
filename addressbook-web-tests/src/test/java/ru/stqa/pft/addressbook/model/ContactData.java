@@ -51,17 +51,29 @@ public class ContactData {
     return mobileNumber;
   }
 
-  public String getEmail() { return email; }
+  public String getEmail() {
+    return email;
+  }
 
-  public String getBirthdayYear() { return bYear; }
+  public String getBirthdayYear() {
+    return bYear;
+  }
 
-  public String getBirthdayMonth() { return bMonth; }
+  public String getBirthdayMonth() {
+    return bMonth;
+  }
 
-  public String getBirthdayDay() { return bDay; }
+  public String getBirthdayDay() {
+    return bDay;
+  }
 
-  public String getGroup() { return group; }
+  public String getGroup() {
+    return group;
+  }
 
-  public int getId() { return id; }
+  public int getId() {
+    return id;
+  }
 
   public ContactData withId(int id) {
     this.id = id;
@@ -147,12 +159,13 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(lastname, that.lastname) &&
+    return id == that.id &&
+            Objects.equals(lastname, that.lastname) &&
             Objects.equals(fname, that.fname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastname, fname);
+    return Objects.hash(id, lastname, fname);
   }
 }
