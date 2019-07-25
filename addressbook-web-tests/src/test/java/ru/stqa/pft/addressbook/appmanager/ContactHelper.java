@@ -7,11 +7,11 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
+
+  private Contacts contactCache = null;
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -83,6 +83,7 @@ public class ContactHelper extends HelperBase {
   public void create(ContactData contactData) {
     initContactCreation();
     fillContactForm(contactData, true);
+    contactCache = null;
     submitContactCreation();
   }
 
@@ -90,6 +91,7 @@ public class ContactHelper extends HelperBase {
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -97,6 +99,7 @@ public class ContactHelper extends HelperBase {
     selectContactbyId(contact.getId());
     deleteSelectedContacts();
     acceptDeletingContacts();
+    contactCache = null;
     waitDeletingFinished();
   }
 
@@ -104,21 +107,24 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home page"));
   }
 
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
   public Contacts all() {
-    Contacts groups = new Contacts();
+    if(contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//*[@id='maintable']//tr[@name='entry']"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       ContactData group = new ContactData().withId(id).withFname(firstname).withLastName(lastname);
-      groups.add(group);
+      contactCache.add(group);
     }
-    return groups;
+    return new Contacts(contactCache);
   }
 
 }
