@@ -13,6 +13,7 @@ public class ContactData {
   private String fname;
   private String homeNumber;
   private String mobileNumber;
+  private String workNumber;
   private String email;
   private String bDay;
   private String bMonth;
@@ -73,6 +74,10 @@ public class ContactData {
 
   public int getId() {
     return id;
+  }
+
+  public String getWorkNumber() {
+    return workNumber;
   }
 
   public ContactData withId(int id) {
@@ -142,6 +147,11 @@ public class ContactData {
 
   public ContactData withGroup(String group) {
     this.group = group;
+    return this;
+  }
+
+  public ContactData withWorkNumber(String workNumber) {
+    this.workNumber = workNumber;
     return this;
   }
 

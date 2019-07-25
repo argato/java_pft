@@ -15,7 +15,7 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() throws Exception {
     app.goTo().homePage();
     ContactData newContact = new ContactData().withLastName("LnameNew").withMname("Mname").withNickname("nickname")
-            .withTitle("title").withAddress("line1\nline2").withHomeNumber("999999").withFname("Fname")
+            .withTitle("title").withAddress("line1\nline2").withHomeNumber("+4888 88").withFname("Fname")
             .withEmail("qwerty@mmmmail.ru").withGroup("test1").withbDay("10").withbMonth("February").withbYear("2000");
     if (newContact.getGroup() != null) {
       app.goTo().groupPage();
