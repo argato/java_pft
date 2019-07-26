@@ -15,10 +15,17 @@ public class ContactData {
   private String mobileNumber;
   private String workNumber;
   private String email;
+  private String email1;
+  private String email2;
   private String bDay;
   private String bMonth;
   private String bYear;
   private String group;
+  private String secondaryAddress;
+  private String secondaryHome;
+  private String secondaryNotes;
+  private String allPhones;
+  private String allEmails;
 
   public String getMname() {
     return mname;
@@ -56,6 +63,14 @@ public class ContactData {
     return email;
   }
 
+  public String getEmail1() {
+    return email1;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
   public String getBirthdayYear() {
     return bYear;
   }
@@ -78,6 +93,26 @@ public class ContactData {
 
   public String getWorkNumber() {
     return workNumber;
+  }
+
+  public String getSecondaryAddress() {
+    return secondaryAddress;
+  }
+
+  public String getSecondaryHome() {
+    return secondaryHome;
+  }
+
+  public String getSecondaryNotes() {
+    return secondaryNotes;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   public ContactData withId(int id) {
@@ -130,6 +165,16 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withEmail1(String email) {
+    this.email1 = email;
+    return this;
+  }
+
+  public ContactData withEmail2(String email) {
+    this.email2 = email;
+    return this;
+  }
+
   public ContactData withbDay(String bDay) {
     this.bDay = bDay;
     return this;
@@ -152,6 +197,31 @@ public class ContactData {
 
   public ContactData withWorkNumber(String workNumber) {
     this.workNumber = workNumber;
+    return this;
+  }
+
+  public ContactData withSecondaryAddress(String secondaryAddress) {
+    this.secondaryAddress = secondaryAddress;
+    return this;
+  }
+
+  public ContactData withSecondaryHome(String secondaryHome) {
+    this.secondaryHome = secondaryHome;
+    return this;
+  }
+
+  public ContactData withSecondaryNotes(String secondaryNotes) {
+    this.secondaryNotes = secondaryNotes;
+    return this;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
     return this;
   }
 
