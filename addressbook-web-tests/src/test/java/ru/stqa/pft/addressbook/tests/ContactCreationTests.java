@@ -5,6 +5,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.*;
@@ -14,9 +16,11 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     app.goTo().homePage();
+    File photo = new File("src/test/resources/ptah.jpg");
     ContactData newContact = new ContactData().withLastName("LnameNew").withMname("Mname").withNickname("nickname")
             .withTitle("title").withAddress("line1\nline2").withHomeNumber("+4888 88").withFname("Fname")
-            .withEmail("qwerty@mmmmail.ru").withGroup("test1").withbDay("10").withbMonth("February").withbYear("2000");
+            .withEmail("qwerty@mmmmail.ru").withGroup("test1").withbDay("10").withbMonth("February").withbYear("2000")
+            .withPhoto(photo);
     if (newContact.getGroup() != null) {
       app.goTo().groupPage();
       if (!app.group().isGroupExist(newContact.getGroup())) {
