@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.File;
