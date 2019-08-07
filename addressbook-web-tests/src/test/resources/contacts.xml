@@ -1,0 +1,47 @@
+<list>
+  <contact>
+    <mname>Mname</mname>
+    <lastname>Last name 0</lastname>
+    <nickname>nickname</nickname>
+    <title>title 0</title>
+    <address>address 0</address>
+    <fname>First name 0</fname>
+    <homeNumber>+4888 88 0</homeNumber>
+    <email>qwerty@mmmmail.ru</email>
+    <bDay>10</bDay>
+    <bMonth>February</bMonth>
+    <bYear>2000</bYear>
+    <group>test1</group>
+    <photo>src\test\resources\ptah.jpg</photo>
+  </contact>
+  <contact>
+    <mname>Mname</mname>
+    <lastname>Last name 1</lastname>
+    <nickname>nickname</nickname>
+    <title>title 1</title>
+    <address>address 1</address>
+    <fname>First name 1</fname>
+    <homeNumber>+4888 88 1</homeNumber>
+    <email>qwerty@mmmmail.ru</email>
+    <bDay>10</bDay>
+    <bMonth>February</bMonth>
+    <bYear>2000</bYear>
+    <group>test1</group>
+    <photo>src\test\resources\ptah.jpg</photo>
+  </contact>
+  <contact>
+    <mname>Mname</mname>
+    <lastname>Last name 2</lastname>
+    <nickname>nickname</nickname>
+    <title>title 2</title>
+    <address>address 2</address>
+    <fname>First name 2</fname>
+    <homeNumber>+4888 88 2</homeNumber>
+    <email>qwerty@mmmmail.ru</email>
+    <bDay>10</bDay>
+    <bMonth>February</bMonth>
+    <bYear>2000</bYear>
+    <group>test1</group>
+    <photo>src\test\resources\ptah.jpg</photo>
+  </contact>
+</list>

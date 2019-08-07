@@ -1,0 +1,47 @@
+[
+  {
+    "mname": "Mname",
+    "lastname": "Last name 0",
+    "nickname": "nickname",
+    "title": "title 0",
+    "address": "address 0",
+    "fname": "First name 0",
+    "homeNumber": "+4888 88 0",
+    "email": "qwerty@mmmmail.ru",
+    "bDay": "10",
+    "bMonth": "February",
+    "bYear": "2000",
+    "group": "test1",
+    "photo": "src\\test\\resources\\ptah.jpg"
+  },
+  {
+    "mname": "Mname",
+    "lastname": "Last name 1",
+    "nickname": "nickname",
+    "title": "title 1",
+    "address": "address 1",
+    "fname": "First name 1",
+    "homeNumber": "+4888 88 1",
+    "email": "qwerty@mmmmail.ru",
+    "bDay": "10",
+    "bMonth": "February",
+    "bYear": "2000",
+    "group": "test1",
+    "photo": "src\\test\\resources\\ptah.jpg"
+  },
+  {
+    "mname": "Mname",
+    "lastname": "Last name 2",
+    "nickname": "nickname",
+    "title": "title 2",
+    "address": "address 2",
+    "fname": "First name 2",
+    "homeNumber": "+4888 88 2",
+    "email": "qwerty@mmmmail.ru",
+    "bDay": "10",
+    "bMonth": "February",
+    "bYear": "2000",
+    "group": "test1",
+    "photo": "src\\test\\resources\\ptah.jpg"
+  }
+]
