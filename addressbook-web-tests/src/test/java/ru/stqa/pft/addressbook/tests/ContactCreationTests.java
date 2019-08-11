@@ -78,20 +78,25 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData newContact) throws Exception {
-    app.goTo().homePage();
-
     if (newContact.getGroup() != null) {
-      app.goTo().groupPage();
-      if (!app.group().isGroupExist(newContact.getGroup())) {
+      System.out.println("newContact.getGroup() " + newContact.getGroup());
+
+      List<String> groupNameList = new ArrayList<>();
+      for(GroupData groupData : app.db().groups() ){
+        groupNameList.add(groupData.getName());
+      }
+      System.out.println("groupNameList=" + groupNameList);
+      if (!groupNameList.contains(newContact.getGroup())) {
+        app.goTo().groupPage();
         app.group().create(new GroupData().withName(newContact.getGroup()));
       }
     }
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().create(newContact);
     app.contact().returnToHomePage();
     assertEquals(app.contact().count(), before.size() + 1);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
 
     assertThat(after, equalTo(
             before.withAdded(newContact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));

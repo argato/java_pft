@@ -78,10 +78,11 @@ public class ContactDataGenerator {
   private void save(List<ContactData> contacts, File file) throws IOException {
     try(Writer writer = new FileWriter(file)) {
       for (ContactData contact : contacts) {
-        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFname(), contact.getLastname(), contact.getNickname(),
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFname(), contact.getLastname(), contact.getNickname(),
                 contact.getMname(), contact.getTitle(), contact.getAddress(), contact.getHomeNumber(),
                 contact.getEmail(), contact.getGroup(), contact.getBirthdayDay(), contact.getBirthdayMonth(),
-                contact.getBirthdayYear(), contact.getPhoto().getPath()));
+                contact.getBirthdayYear(), contact.getWorkNumber(), contact.getMobileNumber(),
+                contact.getPhoto().getPath()));
       }
     }
   }
@@ -92,8 +93,8 @@ public class ContactDataGenerator {
       contacts.add(new ContactData().withFname(String.format("First name %s", i)).withLastName(String.format("Last name %s", i))
                       .withNickname(String.format("Nickname %s", i)).withMname("Mname").withNickname("nickname")
                       .withTitle(String.format("title %s", i)).withAddress(String.format("address %s", i))
-                      .withHomeNumber(String.format("+4888 88 %s", i))
-                      .withEmail("qwerty@mmmmail.ru").withGroup("test1")
+                      .withHomeNumber(String.format("+4888 88 %s", i)).withWorkNumber(String.format("+333 %s", i))
+                      .withEmail("qwerty@mmmmail.ru").withGroup("test1").withMobileNumber(String.format("+4444 %s", i))
                       .withbDay("10").withbMonth("February").withbYear("2000").withPhoto(new File ("src/test/resources/ptah.jpg"))
               );
     }
