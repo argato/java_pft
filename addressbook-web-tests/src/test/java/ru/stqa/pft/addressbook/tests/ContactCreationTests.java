@@ -79,13 +79,10 @@ public class ContactCreationTests extends TestBase {
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData newContact) throws Exception {
     if (newContact.getGroup() != null) {
-      System.out.println("newContact.getGroup() " + newContact.getGroup());
-
       List<String> groupNameList = new ArrayList<>();
       for(GroupData groupData : app.db().groups() ){
         groupNameList.add(groupData.getName());
       }
-      System.out.println("groupNameList=" + groupNameList);
       if (!groupNameList.contains(newContact.getGroup())) {
         app.goTo().groupPage();
         app.group().create(new GroupData().withName(newContact.getGroup()));
@@ -100,5 +97,6 @@ public class ContactCreationTests extends TestBase {
 
     assertThat(after, equalTo(
             before.withAdded(newContact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyContactListInUI();
   }
 }
