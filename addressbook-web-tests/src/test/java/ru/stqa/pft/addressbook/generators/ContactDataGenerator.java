@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -80,7 +82,7 @@ public class ContactDataGenerator {
       for (ContactData contact : contacts) {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFname(), contact.getLastname(), contact.getNickname(),
                 contact.getMname(), contact.getTitle(), contact.getAddress(), contact.getHomeNumber(),
-                contact.getEmail(), contact.getGroup(), contact.getBirthdayDay(), contact.getBirthdayMonth(),
+                contact.getEmail(), contact.getGroups(), contact.getBirthdayDay(), contact.getBirthdayMonth(),
                 contact.getBirthdayYear(), contact.getWorkNumber(), contact.getMobileNumber(),
                 contact.getPhoto().getPath()));
       }
@@ -94,7 +96,7 @@ public class ContactDataGenerator {
                       .withNickname(String.format("Nickname %s", i)).withMname("Mname").withNickname("nickname")
                       .withTitle(String.format("title %s", i)).withAddress(String.format("address %s", i))
                       .withHomeNumber(String.format("+4888 88 %s", i)).withWorkNumber(String.format("+333 %s", i))
-                      .withEmail("qwerty@mmmmail.ru").withGroup("test1").withMobileNumber(String.format("+4444 %s", i))
+                      .withEmail("qwerty@mmmmail.ru").inGroup(new GroupData().withName("test1")).withMobileNumber(String.format("+4444 %s", i))
                       .withbDay("10").withbMonth("February").withbYear("2000").withPhoto(new File ("src/test/resources/ptah.jpg"))
               );
     }

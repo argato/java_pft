@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.Assertion;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -37,8 +38,9 @@ public class ContactHelper extends HelperBase {
     setComboBox(By.name("bmonth"), contactData.getBirthdayMonth());
     type(By.name("byear"), contactData.getBirthdayYear());
     if (creation) {
-      if (contactData.getGroup() != null) {
-        setComboBox(By.name("new_group"), contactData.getGroup());
+     if (contactData.getGroups().size() > 0) {
+       Assert.assertTrue(contactData.getGroups().size() == 1);
+        setComboBox(By.name("new_group"), contactData.getGroups().iterator().next().getName());
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));

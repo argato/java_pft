@@ -4,12 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.generators.FileDeserializer;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,7 +38,8 @@ public class ContactCreationTests extends TestBase {
         String[] split = line.split(";");
         list.add(new Object[]{new ContactData().withFname(split[0]).withLastName(split[1]).withNickname(split[2])
                 .withMname(split[3]).withTitle(split[4]).withAddress(split[5]).withHomeNumber(split[6])
-                .withEmail(split[7]).withGroup(split[8]).withbDay(split[9]).withbMonth(split[10].trim()).withbYear(split[11])
+                .withEmail(split[7]).inGroup(new GroupData().withName(split[8]))
+                .withbDay(split[9]).withbMonth(split[10].trim()).withbYear(split[11])
                 .withPhoto(new File(split[12].trim()))});
         line = reader.readLine();
       }
@@ -78,14 +81,15 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData newContact) throws Exception {
-    if (newContact.getGroup() != null) {
+    if (newContact.getGroups().size() >0) {
+      Assert.assertTrue(newContact.getGroups().size()==1);
       List<String> groupNameList = new ArrayList<>();
       for(GroupData groupData : app.db().groups() ){
         groupNameList.add(groupData.getName());
       }
-      if (!groupNameList.contains(newContact.getGroup())) {
+      if (!groupNameList.contains(newContact.getGroups().iterator().next())) {
         app.goTo().groupPage();
-        app.group().create(new GroupData().withName(newContact.getGroup()));
+        app.group().create(new GroupData().withName(newContact.getGroups().iterator().next().getName()));
       }
     }
     app.goTo().homePage();
