@@ -30,7 +30,7 @@ public class GroupData {
   @Type(type="text")
   private String footer;
 
-  @ManyToMany(mappedBy = "groups")
+  @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
   private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public int getId() {
@@ -97,4 +97,13 @@ public class GroupData {
             '}';
   }
 
+  public GroupData addContact(ContactData modifiedContact) {
+  this.contacts.add(modifiedContact);
+  return this;
+  }
+
+  public GroupData deleteContact(ContactData modifiedContact) {
+    this.contacts.remove(modifiedContact);
+    return this;
+  }
 }

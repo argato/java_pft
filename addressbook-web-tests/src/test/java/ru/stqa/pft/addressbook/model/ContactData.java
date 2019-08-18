@@ -329,6 +329,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData addGroup(GroupData group){
+    this.groups.add(group);
+    return this;
+  }
+
   @Override
   public String toString() {
     return "ContactData{" +
@@ -350,4 +355,8 @@ public class ContactData {
             '}';
   }
 
+  public ContactData removeGroup(GroupData group) {
+    this.groups.remove(group);
+    return this;
+  }
 }

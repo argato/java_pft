@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import com.sun.org.apache.xml.internal.serializer.utils.BoolStack;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,5 +67,21 @@ public class TestBase {
                         .withAllPhones(g.getAllPhones()).withAllEmails(g.getAllEmails()))
                 .collect(Collectors.toSet())));
       }
+  }
+
+  public void verifyContactListInUIByGroup(GroupData group) {
+    if(Boolean.getBoolean("verifyUI")){
+      logger.info("Verifying UI is on");
+      Contacts dbContacts = app.db().contacts();
+      dbContacts.removeIf(contactData -> !contactData.getGroups().contains(group));
+      app.goTo().homePage();
+      app.contact().showContactsInGroup(group.getName());
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts.stream()
+              .map((g)-> new ContactData().withId(g.getId()).withLastName(g.getLastname())
+                      .withAddress(g.getAddress()).withFname(g.getFname())
+                      .withAllPhones(g.getAllPhones()).withAllEmails(g.getAllEmails()))
+              .collect(Collectors.toSet())));
+    }
   }
 }

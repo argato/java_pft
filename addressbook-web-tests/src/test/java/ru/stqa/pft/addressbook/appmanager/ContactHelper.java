@@ -155,4 +155,17 @@ public class ContactHelper extends HelperBase {
             .withAddress(address).withSecondaryAddress(secondaryAddress).withSecondaryHome(secondaryHome);
   }
 
+  public void addToGroupSelectedContacts() {
+    click(By.xpath("//input[@value='Add to']"));
+  }
+
+  public void selectGroup(String name){
+    setComboBox(By.name("to_group"), name);
+  }
+
+  public void showContactsInGroup(String name){
+    setComboBox(By.name("group"), name);
+  }
+
+  public void removeFromeGroup(){ click(By.name("remove"));}
 }

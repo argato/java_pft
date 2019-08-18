@@ -46,4 +46,20 @@ public class Groups extends ForwardingSet<GroupData> {
     groups.add(added);
     return groups;
   }
+
+  public Groups withAddedContact(GroupData selectedGroup, ContactData modifiedContact) {
+    Groups groups = new Groups(this);
+    groups.remove(selectedGroup);
+    selectedGroup.addContact(modifiedContact);
+    groups.add(selectedGroup);
+    return groups;
+  }
+
+  public Groups withRemovedContact(GroupData selectedGroup, ContactData modifiedContact) {
+    Groups groups = new Groups(this);
+    groups.remove(selectedGroup);
+    selectedGroup.deleteContact(modifiedContact);
+    groups.add(selectedGroup);
+    return groups;
+  }
 }
