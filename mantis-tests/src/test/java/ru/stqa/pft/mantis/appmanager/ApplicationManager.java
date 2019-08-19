@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,6 +19,7 @@ public class ApplicationManager {
   private WebDriver wd;
   String browser;
   private RegistrationHelper registrationHelper;
+  private FtpHelper ftpHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -66,4 +68,10 @@ public class ApplicationManager {
       return wd;
   }
 
+  public FtpHelper ftp(){
+    if(ftpHelper==null){
+      ftpHelper = new FtpHelper(this);
+    }
+    return ftpHelper;
+  }
 }
