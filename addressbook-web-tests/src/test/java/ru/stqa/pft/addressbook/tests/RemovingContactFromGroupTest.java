@@ -11,8 +11,6 @@ import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 public class RemovingContactFromGroupTest extends TestBase {
 
@@ -20,8 +18,8 @@ public class RemovingContactFromGroupTest extends TestBase {
   public void ensurePreconditionsForContact() {
     if (app.db().contacts().size() == 0) {
       app.goTo().homePage();
-      app.contact().create(new ContactData().withLastName("Mod").withMname("Mod").withNickname("nickname")
-              .withTitle("title").withAddress("line1").withHomeNumber("999999").withFname("Mod")
+      app.contact().create(new ContactData().withLastName("Del").withMname("Del").withNickname("nickname")
+              .withTitle("title").withAddress("line1").withHomeNumber("999999").withFname("Del")
               .withEmail("Mod@mmmmail.ru").withbDay("11").withbMonth("February").withbYear("2000")
               .withPhoto(new File("src/test/resources/ptah.jpg")).withWorkNumber("+7 9999").withMobileNumber("78 55 55"));
     }
@@ -40,6 +38,16 @@ public class RemovingContactFromGroupTest extends TestBase {
   public void testDeletingFromGroup(){
     Contacts contacts = app.db().contacts();
     contacts.removeIf(contactData -> contactData.getGroups().size()==0);
+    if(contacts.size() == 0){
+      Groups groups = app.db().groups();
+      app.goTo().homePage();
+      app.contact().create(new ContactData().withLastName("Del").withMname("Del").withNickname("nickname")
+              .withFname("Del").withPhoto(new File("src/test/resources/ptah.jpg"))
+              .withbDay("11").withbMonth("February").withbYear("2000")
+              .inGroup(groups.iterator().next()));
+      contacts = app.db().contacts();
+      contacts.removeIf(contactData -> contactData.getGroups().size()==0);
+    }
     ContactData modifiedContact = contacts.iterator().next();
     ContactData contactBefore = app.db().contactById(modifiedContact.getId());
     GroupData selectedGroup = modifiedContact.getGroups().iterator().next();
