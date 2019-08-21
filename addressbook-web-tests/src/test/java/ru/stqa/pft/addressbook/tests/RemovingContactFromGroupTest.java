@@ -38,11 +38,10 @@ public class RemovingContactFromGroupTest extends TestBase {
 
   @Test
   public void testDeletingFromGroup(){
-    Contacts contactsBefore = app.db().contacts();
     Contacts contacts = app.db().contacts();
-    Groups groupsBefore = app.db().groups();
     contacts.removeIf(contactData -> contactData.getGroups().size()==0);
     ContactData modifiedContact = contacts.iterator().next();
+    ContactData contactBefore = app.db().contactById(modifiedContact.getId());
     GroupData selectedGroup = modifiedContact.getGroups().iterator().next();
 
     app.goTo().homePage();
@@ -51,11 +50,9 @@ public class RemovingContactFromGroupTest extends TestBase {
     app.contact().removeFromeGroup();
     logger.info(String.format("Contact %s removed from group %s", modifiedContact, selectedGroup));
 
-    Contacts updatedContacts = app.db().contacts();
-    Groups updatedGroups = app.db().groups();
+    ContactData updatedContact = app.db().contactById(modifiedContact.getId());
 
-    assertThat(updatedContacts, equalTo(contactsBefore.withRemovedGroup(modifiedContact, selectedGroup)));
-    assertThat(updatedGroups, equalTo(groupsBefore.withRemovedContact(selectedGroup, modifiedContact)));
+    assertThat(updatedContact.getGroups(), equalTo(contactBefore.removeGroup(selectedGroup).getGroups()));
 
     verifyContactListInUIByGroup(selectedGroup);
   }

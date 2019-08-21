@@ -12,7 +12,6 @@ import java.io.File;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 public class AddingContactToGroupTest extends TestBase{
 
@@ -38,8 +37,7 @@ public class AddingContactToGroupTest extends TestBase{
 
   @Test
   public void testAddingToGroup(){
-    Contacts contactsBefore = app.db().contacts();
-    Contacts contacts = new Contacts(contactsBefore);
+    Contacts contacts = app.db().contacts();
     Groups groups = app.db().groups();
     GroupData selectedGroup = groups.iterator().next();
     contacts.removeIf(contactData -> contactData.getGroups().contains(selectedGroup));
@@ -54,6 +52,7 @@ public class AddingContactToGroupTest extends TestBase{
       contacts.removeIf(contactData -> contactData.getGroups().contains(selectedGroup));
     }
     ContactData modifiedContact = contacts.iterator().next();
+    ContactData contactBefore = app.db().contactById(modifiedContact.getId());
     app.goTo().homePage();
     app.contact().showContactsInGroup("[all]");
     assertFalse(selectedGroup.getContacts().contains(modifiedContact));
@@ -63,11 +62,9 @@ public class AddingContactToGroupTest extends TestBase{
     app.contact().addToGroupSelectedContacts();
     logger.info(String.format("Contact %s added to group %s", modifiedContact, selectedGroup));
 
-    Contacts updatedContacts = app.db().contacts();
-    Groups updatedGroups = app.db().groups();
+    ContactData updatedContact = app.db().contactById(modifiedContact.getId());
 
-    assertThat(updatedContacts, equalTo(contactsBefore.withAddedGroup(modifiedContact, selectedGroup)));
-    assertThat(updatedGroups, equalTo(groups.withAddedContact(selectedGroup, modifiedContact)));
+    assertThat(updatedContact.getGroups(), equalTo(contactBefore.addGroup(selectedGroup).getGroups()));
 
     verifyContactListInUIByGroup(selectedGroup);
   }
