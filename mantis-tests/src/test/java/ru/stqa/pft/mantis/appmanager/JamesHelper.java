@@ -21,7 +21,7 @@ public class JamesHelper {
   private Store store;
   private String mailserver;
   private InputStream in;
-  private OutputStream out;
+  private PrintStream out;
 
   public JamesHelper(ApplicationManager app){
     this.app = app;
@@ -102,7 +102,7 @@ public class JamesHelper {
 
   private void write(String value){
     try {
-      System.out.println(value);
+      out.println(value);
       out.flush();
       System.out.println(value);
     }catch (Exception e){
