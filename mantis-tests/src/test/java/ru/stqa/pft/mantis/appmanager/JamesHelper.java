@@ -136,6 +136,7 @@ public class JamesHelper {
   }
 
   public List<MailMessage> waitForMail(String username, String password, long timeout) throws MessagingException{
+    initTelnetSession();
     long now = System.currentTimeMillis();
     while (System.currentTimeMillis() < now + timeout){
       List<MailMessage> allMail = getAllMail(username, password);
@@ -169,5 +170,11 @@ public class JamesHelper {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public void deleteAllMail(String username, String password) throws MessagingException {
+    initTelnetSession();
+    drainEmail(username, password);
+    closeTelnetSession();
   }
 }

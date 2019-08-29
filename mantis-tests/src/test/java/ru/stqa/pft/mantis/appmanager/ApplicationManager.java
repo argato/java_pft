@@ -23,6 +23,9 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
   private SoapHelper soapHelper;
+  private NavigationHelper navigationHelper;
+  private SessionHelper sessionHelper;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -97,5 +100,27 @@ public class ApplicationManager {
       soapHelper = new SoapHelper(this);
     }
     return soapHelper;
+  }
+
+  public NavigationHelper goTo(){
+    if(navigationHelper == null){
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
+
+  public SessionHelper session(){
+    if(sessionHelper == null){
+      sessionHelper = new SessionHelper(this);
+    }
+    return sessionHelper;
+  }
+
+
+  public DbHelper db(){
+    if(dbHelper == null){
+      dbHelper = new DbHelper();
+    }
+    return dbHelper;
   }
 }
