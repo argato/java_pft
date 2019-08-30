@@ -26,6 +26,6 @@ public class PointTests {
     Point p1 = new Point(2.0, 15.0);
     Point p2 = new Point(2.0, 1.0);
 
-    Assert.assertEquals(p1.distance(p2), 14);
+    Assert.assertEquals(p1.distance(p2), 14.0);
   }
 }
