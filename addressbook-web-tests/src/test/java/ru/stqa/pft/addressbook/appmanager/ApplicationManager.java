@@ -4,6 +4,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -39,6 +40,9 @@ public class ApplicationManager {
 
     dbHelper = new DbHelper();
 
+    System.out.println(BrowserType.FIREFOX);
+    System.out.println(BrowserType.CHROME);
+    System.out.println(BrowserType.IE);
     if("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
@@ -50,6 +54,13 @@ public class ApplicationManager {
     } else {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
+      if (browser.equals(BrowserType.FIREFOX)) {
+        FirefoxOptions options = new FirefoxOptions();
+        options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe"); //Location where Firefox is installed
+
+        capabilities = DesiredCapabilities.firefox();
+        capabilities.setCapability("moz:firefoxOptions", options);
+      }
       capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
