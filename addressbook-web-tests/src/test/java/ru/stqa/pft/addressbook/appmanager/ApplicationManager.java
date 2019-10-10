@@ -47,16 +47,12 @@ public class ApplicationManager {
         wd = new InternetExplorerDriver();
       }
     } else {
-      //DesiredCapabilities capabilities = new DesiredCapabilities();
-      //capabilities.setBrowserName(browser);
-      //capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
-      DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-      capabilities.setCapability("marionette", true);
+      DesiredCapabilities capabilities = new DesiredCapabilities();
+      capabilities.setBrowserName(browser);
       capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
-      System.setProperty("webdriver.gecko.driver", "C:\\Windows\\System32\\geckodriver.exe");
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
-    wd.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
     groupHelper = new GroupHelper(wd);
     contactHelper = new ContactHelper(wd);
