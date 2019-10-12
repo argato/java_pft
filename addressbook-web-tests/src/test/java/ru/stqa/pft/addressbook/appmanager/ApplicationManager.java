@@ -49,7 +49,7 @@ public class ApplicationManager {
     } else {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
-      //capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
+      capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
     wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -58,7 +58,7 @@ public class ApplicationManager {
     contactHelper = new ContactHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
-    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+    sessionHelper.login(properties.getProperty("selenium.server"), properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
   }
 
   public void stop() {
